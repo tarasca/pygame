@@ -1,6 +1,6 @@
 from pygame.font import Font  
 #setup screen const
-WINDOW_TITLE = "doctor mengueche"
+WINDOW_TITLE = "will_invaders.exe"
 
 #screen size consts
 ORIGIN = (0, 0)
@@ -56,31 +56,44 @@ FUXSIA= (255, 0 ,128)
 GREY = (128, 128, 128)
 WHITE = (255, 255, 255)
 BLACK = (0, 0, 0)
+
+TITLE_COLOR = (255,127,80)
 #game costs
 
 
 #Player consts
-
 PLAYER_ORIGIN = (DOWN_CENTER)
 PLAYER_SIZE = (70, 70)
 PLAYER_SPEED = 15
+PLAYER_LIFE = 12
+
+SCORE_ROOF = 2000
+#Firestar consts
+FIRESTAR_SIZE = (55, 55)
+FIRESTAR_SPEED = 13
 
 #hud consts
 SCORE_POS = (WIDTH//2, 15)
 KILLS_POS = (WIDTH-65, 0)
 DEATHS_POS = (WIDTH-70, 16)
 
-#Firestar consts
-FIRESTAR_SIZE = (35, 35)
-FIRESTAR_SPEED = 13
+#Items consts
+FRUIT_SIZE = (45,45)
 
-#Bowling_ball consts
+#Bowling consts
 BOWLING_CAP = 12
 BOWLING_SIZE = (80, 80)
 BOWLING_SPEED = 8
+#Triangles consts
+TRINAGLES_SIZE = (25, 25)
+TRINAGLES_SPEED = 13
 
-#invaders consts
-INVADER_WAVES = 10
-INVADER_CAP = 6
+#Invaders consts
+INVADER_WAVES = 3
+INVADER_CAP = 12
 INVADER_SIZE = (40,40)
-INVADER_SPEED = 4.5
+INVADER_SPEED = 7.5
+#Redball consts
+REDBALL_SIZE = (20,20)
+REDBALL_SPEED = 12
+

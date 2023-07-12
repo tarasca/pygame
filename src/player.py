@@ -6,6 +6,8 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, image_path: str,size: tuple, midBottom: tuple, sound: pygame.mixer.Sound, player_info: dict):
         super().__init__()  
 
+        
+
         self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha(),size)
         self.rect = self.image.get_rect()
         self.rect.midbottom = midBottom
@@ -17,11 +19,16 @@ class Player(pygame.sprite.Sprite):
         self.aceleration = 1
 
         self.player_info = player_info
-        self.life = 25
-
+        self.life = PLAYER_LIFE
+        
+        if self.life == 0:
+            self.playing = False 
+            self.player_info['deaths'] += 1
+       
         self.playing = True
     def update(self):
         if self.playing:
+            if self.life > PLAYER_LIFE: self.life = PLAYER_LIFE
             self.rect.x += self.speedx * self.aceleration
             self.rect.y += self.speedy * self.aceleration
                 
