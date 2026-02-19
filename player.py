@@ -3,7 +3,13 @@ import pygame
 from config import *
 
 class Player(pygame.sprite.Sprite):
-    def __init__(self, image_path: str,size: tuple, midBottom: tuple, sound: pygame.mixer.Sound, player_info: dict):
+    def __init__(
+            self, 
+            image_path: str,
+            size: tuple, 
+            midBottom: tuple, 
+            sound: pygame.mixer.Sound, 
+            player_info: dict):
         super().__init__()  
 
         
@@ -43,7 +49,12 @@ class Player(pygame.sprite.Sprite):
 
     def fire_star(self, sprites: pygame.sprite.Sprite, firestars: pygame.sprite.Sprite):
         if self.playing:
-            firestar = FireStar('./src/images/player/proyectiles/firestar.png',self.rect.midtop,FIRESTAR_SPEED,self.playing)
+            firestar = FireStar(
+                './src/images/player/proyectiles/firestar.png',
+                self.rect.midtop,
+                FIRESTAR_SPEED,
+                self.playing
+            )
             self.sound.play()
             sprites.add(firestar)
             firestars.add(firestar)
@@ -67,7 +78,12 @@ class Player(pygame.sprite.Sprite):
         self.speedy = 0
     
 class FireStar(pygame.sprite.Sprite):
-    def __init__(self,image_path: str, midBottom: tuple, speedy: int = 13, playing: bool = True):
+    def __init__(
+            self,
+            image_path: str, 
+            midBottom: tuple, 
+            speedy: int = 13, 
+            playing: bool = True):
         super().__init__()
         
         self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha(),FIRESTAR_SIZE)

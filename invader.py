@@ -2,14 +2,25 @@ import pygame,random
 from config import *
 
 class Invader(pygame.sprite.Sprite):
-    def __init__(self, image_path: list[str],  sound: pygame.mixer.Sound, size: tuple, center: tuple, speed: int = 4) -> None:
+    def __init__(
+            self, 
+            image_path: list[str],  
+            sound: pygame.mixer.Sound, 
+            size: tuple, 
+            center: tuple, 
+            speed: int = 4) -> None:
         super().__init__()
 
         #self.clock = 
 
         self.playing = True
 
-        self.movement = [pygame.transform.scale(pygame.image.load(image_path[0]),size), pygame.transform.scale(pygame.image.load(image_path[1]),size)]
+        self.movement = [
+            pygame.transform.scale(
+                pygame.image.load(image_path[0]),size), 
+                pygame.transform.scale(pygame.image.load(image_path[1]), size
+            )
+        ]
         self.index = 0
         self.image = self.movement[self.index]
         self.rect = self.image.get_rect() 
@@ -39,7 +50,12 @@ class Invader(pygame.sprite.Sprite):
 
     def shot(self, sprites: pygame.sprite.Sprite, redballs: pygame.sprite.Sprite):
         if self.playing:
-            shot = RedBall('./src/images/enemies/proyectiles/redball.png',REDBALL_SIZE, self.rect.midbottom, REDBALL_SPEED)
+            shot = RedBall(
+                './src/images/enemies/proyectiles/redball.png',
+                REDBALL_SIZE, 
+                self.rect.midbottom, 
+                REDBALL_SPEED
+            )
             self.sound.play()
             sprites.add(shot)
             redballs.add(shot)
@@ -60,7 +76,12 @@ class Invader(pygame.sprite.Sprite):
 
         
 class RedBall(pygame.sprite.Sprite):   
-    def __init__(self,image_path: str, size: tuple, center: tuple, speed: int = 12):
+    def __init__(
+            self,
+            image_path: str, 
+            size: tuple, 
+            center: tuple, 
+            speed: int = 12):
         super().__init__()
         self.image = self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha(),size)
         self.rect = self.image.get_rect() 

@@ -1,0 +1,7 @@
+#####
+level = 0
+current score = 002061
+current kills = 013
+damage time = 0000
+current deaths = 00
+current time played = 11.000

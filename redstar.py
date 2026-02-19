@@ -2,7 +2,13 @@ import pygame
 from config import *
 
 class RedStar(pygame.sprite.Sprite):
-    def __init__(self,path_imagen: str, size: tuple, center: tuple, speed: int = 5, aceleration: float = 1):
+    def __init__(
+            self,
+            path_imagen: str, 
+            size: tuple, 
+            center: tuple, 
+            speed: int = 5, 
+            aceleration: float = 1):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(path_imagen).convert_alpha(),size)

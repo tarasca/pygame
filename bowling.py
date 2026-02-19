@@ -2,7 +2,13 @@ import pygame,random
 from config import *
 
 class Bowling(pygame.sprite.Sprite):
-    def __init__(self, image_path: str, sound: pygame.mixer.Sound,  size: tuple, center: tuple, speed: int = 7):
+    def __init__(
+            self, 
+            image_path: str, 
+            sound: pygame.mixer.Sound,  
+            size: tuple, 
+            center: tuple, 
+            speed: int = 7):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha(), size)
@@ -26,12 +32,21 @@ class Bowling(pygame.sprite.Sprite):
         self.playing = True
     def shot(self, sprites: pygame.sprite.Sprite, triangles: pygame.sprite.Sprite):
         if self.playing:
-            shot = Triangle('./src/images/enemies/proyectiles/triangle.png',(20,20), self.rect.midbottom, 3)
+            shot = Triangle(
+                './src/images/enemies/proyectiles/triangle.png',
+                (20,20), 
+                self.rect.midbottom, 
+                3
+            )
             self.sound.play()
             sprites.add(shot)
             triangles.add(shot)
 
-    def generate(self,sprites: pygame.sprite.Sprite, enemies: pygame.sprite.Sprite, bowlings: pygame.sprite.Sprite):
+    def generate(
+            self,sprites: pygame.sprite.Sprite, 
+            enemies: pygame.sprite.Sprite, 
+            bowlings: pygame.sprite.Sprite
+        ):
         if len(self.bowlings) == 0:
             for i in range(BOWLING_CAP):
                 origin = (random.randrange(65, WIDTH-65), random.randrange(-180, HEIGHT//3))
@@ -41,7 +56,12 @@ class Bowling(pygame.sprite.Sprite):
                 sprites.add(bowling)
 
 class Triangle(pygame.sprite.Sprite):   
-    def __init__(self,image_path: str, size: tuple, center: tuple, speed: int = 2):
+    def __init__(
+            self,
+            image_path: str, 
+            size: tuple, 
+            center: tuple, 
+            speed: int = 2):
         super().__init__()
         self.image = self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha(),size)
         self.rect = self.image.get_rect() 

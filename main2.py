@@ -25,12 +25,12 @@ fondo = pygame.image.load('./src/images/fondo_1.jpg').convert()
 fondo = pygame.transform.scale(fondo, (WIDTH, HEIGHT))
 
 #image_explode = pygame.transform.scale(pygame.image.load('./src/images/explosion_1.png').convert_alpha(),(70,70))
-image_bullet = pygame.transform.scale(pygame.image.load('./src/images/bullet_1.png').convert_alpha(),BULLET_SIZE)
+image_bullet = pygame.transform.scale(pygame.image.load('./src/images/bullet_1.png').convert_alpha(),(70, 70))
 
 
 #texto
 std_font = pygame.font.SysFont('rage',36)#fuente y size
-pimba_msg = std_font.render("pimba",True,AMARILLO)#tipeo mensaje
+pimba_msg = std_font.render("pimba",True,YELLOW)#tipeo mensaje
 
 #sonido
 sound_collision = pygame.mixer.Sound("./src/sounds/pum.mp3")
@@ -42,7 +42,7 @@ knifes = pygame.sprite.Group()
 bullets = pygame.sprite.Group()
 
 #surfaces y rects
-will = Will('./src/images/will.png',WILL_SIZE,CENTER,sound_bullet,image_bullet)
+will = Will('./src/images/will.png',PLAYER_SIZE,CENTER,sound_bullet,image_bullet)
 sprites.add(will)
 
 while True:#bucle juego
@@ -70,13 +70,13 @@ while True:#bucle juego
 
         elif(event.type == pygame.KEYDOWN):
             if(event.key == pygame.K_LEFT):
-                will.speed_x = -WILL_SPEED
+                will.speed_x = -PLAYER_SPEED
             if(event.key == pygame.K_RIGHT):
-                will.speed_x = WILL_SPEED
+                will.speed_x = PLAYER_SPEED
             if(event.key == pygame.K_UP):
-                will.speed_y = -WILL_SPEED
+                will.speed_y = -PLAYER_SPEED
             if(event.key == pygame.K_DOWN):
-                will.speed_y = WILL_SPEED
+                will.speed_y = PLAYER_SPEED
             if(event.type == pygame.K_x):
                 will.fire(sprites,bullets)
 
@@ -105,8 +105,8 @@ while True:#bucle juego
 
     screen.blit(fondo, ZERO_POS)
 
-    pygame.draw.line(screen,MORADO,(WIDTH//2,0),(WIDTH//2,HEIGHT))
-    pygame.draw.line(screen,MORADO,(0,HEIGHT//2),(WIDTH,HEIGHT//2))
+    pygame.draw.line(screen,PURPLE,(WIDTH//2,0),(WIDTH//2,HEIGHT))
+    pygame.draw.line(screen,PURPLE,(0,HEIGHT//2),(WIDTH,HEIGHT//2))
     
     sprites.draw(screen)
 

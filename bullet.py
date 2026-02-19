@@ -2,7 +2,13 @@ import pygame
 from config import *
 
 class Bullet(pygame.sprite.Sprite):
-    def __init__(self, image_path: str, size: tuple, midbottom: tuple, speed: int = 7, aceleration: float = 1):
+    def __init__(
+            self, 
+            image_path: str, 
+            size: tuple, 
+            midbottom: tuple, 
+            speed: int = 7, 
+            aceleration: float = 1):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(image_path).convert_alpha, size)

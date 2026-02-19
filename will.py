@@ -3,7 +3,14 @@ from bullet import Bullet
 from config import *
 
 class Will(pygame.sprite.Sprite):
-    def __init__(self, path_image: str,size: tuple, midBottom: tuple,speed: int, aceleration):
+    def __init__(
+            self, 
+            path_image: str,
+            size: tuple, 
+            midBottom: tuple,
+            speed: int, 
+            aceleration
+        ):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(path_image).convert_alpha(),size)

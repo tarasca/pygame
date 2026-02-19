@@ -2,7 +2,12 @@ import pygame,random
 from config import *
 
 class Fruit(pygame.sprite.Sprite):
-    def __init__(self, image_path: str, sound: pygame.mixer.Sound, size: tuple, center: tuple):
+    def __init__(
+            self, 
+            image_path: str,
+            sound: pygame.mixer.Sound,
+            size: tuple, 
+            center: tuple):
         super().__init__()
 
         self.image = pygame.transform.scale(pygame.image.load(image_path),size)

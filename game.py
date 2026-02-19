@@ -7,83 +7,126 @@ from item import Fruit
 
 class Game:
     def __init__(self):
+        # initialize pygame
         pygame.init()
         pygame.display.set_caption(WINDOW_TITLE)
         self.clock = pygame.time.Clock()
         #self.time = self.clock.get_time()
         self.screen = pygame.display.set_mode(SCREEN_SIZE)
-        self.icon = pygame.display.set_icon(pygame.image.load("./src/images/icon/icon_1.png").convert())
-
-        self.backgrounds = {'space_1':pygame.transform.scale(pygame.image.load('./src/images/backgrounds/space.png').convert(), SCREEN_SIZE),
-                            'pretty_1':pygame.transform.scale(pygame.image.load('./src/images/backgrounds/pretty.jpg').convert(), (840,840)),
-                            'death_1':pygame.transform.scale(pygame.image.load('./src/images/backgrounds/death.jpg').convert(), SCREEN_SIZE),
-                            'squared_1':pygame.transform.scale(pygame.image.load('./src/images/backgrounds/squared.jpg').convert(), SCREEN_SIZE),
-                            'yellow_1':pygame.transform.scale(pygame.image.load('./src/images/backgrounds/yellow.png').convert(), SCREEN_SIZE)}
-
-        self.png_paths = {'will':'./src/images/player/will.png',
-                          'firestar':'./src/images/player/proyectiles/firestar.png',
-                          'bowling':'./src/images/enemies/bowling.png',
-                          'invader01':'./src/images/enemies/space_invader01.png',
-                          'invader02':'./src/images/enemies/space_invader02.png',
-                          'redball':'./src/iamges/enemies/proyectiles/redball.png',
-                          'fruit01':'./src/images/items/fruit_1.png'}
-
-        self.fonts = {'elegant_regular':Font('./src/fonts/Agdasima-Regular.ttf',12),
-                      'elegant_bold':Font('./src/fonts/Agdasima-Bold.ttf',32),
-                      'fancy_titles':Font('./src/fonts/Nabla-Regular.ttf',48),
-                      'gothic_bold':Font('./src/fonts/CairoPlay-Bold.ttf',12),
-                      'gothic_extralight':Font('./src/fonts/CairoPlay-ExtraLight.ttf',12),
-                      'gothic_light':Font('./src/fonts/CairoPlay-Light.ttf',18),
-                      'gothic_regular':Font('./src/fonts/CairoPlay-Regular.ttf',12),
-                      'stdtxt_bold':Font('./src/fonts/RobotoMono-Bold.ttf',12),
-                      'stdtxt_extralight':Font('./src/fonts/RobotoMono-ExtraLight.ttf',32),
-                      'stdtxt_medium':Font('./src/fonts/RobotoMono-Medium.ttf',12),
-                      'stdtxt_regular':Font('./src/fonts/RobotoMono-Regular.ttf',12),
-                      'stdtxt_semibold':Font('./src/fonts/RobotoMono-SemiBold.ttf',12),
-                      'stdtxt_thin':Font('./src/fonts/RobotoMono-Thin.ttf',12),
-                      'grafitti_light':Font('./src/fonts/Tourney-Light.ttf',12),
-                      'grafitti_regular':Font('./src/fonts/Tourney-Regular.ttf',12),
-                      'grafitti_medium':Font('./src/fonts/Tourney-Medium.ttf',54),#title
-                      'grafitti_bold':Font('./src/fonts/Tourney-Bold.ttf',12)}
-
-        self.effect_pngs = {'explosion_1':'./src/images/effects/explosion.png',
-                            'mark_1':'./src/images/effects/mark_1.png'}
-
-        self.sound_effects = {'fire':pygame.mixer.Sound("./src/sounds/pap.mp3"),
-                              'laser':pygame.mixer.Sound("./src/sounds/laser.wav"),
-                              'redball':pygame.mixer.Sound("./src/sounds/blublu.wav"),
-                              'triangle':pygame.mixer.Sound("./src/sounds/pipupi.wav"),
-                              'fruit01':pygame.mixer.Sound("./src/sounds/titu.wav")}
+        self.icon = pygame.display.set_icon(pygame.image.load(
+            "./src/images/icon/icon_1.png").convert()
+        )
+        # Load backgrounds
+        self.backgrounds = {
+            'space_1':pygame.transform.scale(pygame.image.load(
+                './src/images/backgrounds/space.png').convert(), 
+                SCREEN_SIZE
+            ),
+            'pretty_1':pygame.transform.scale(pygame.image.load(
+                './src/images/backgrounds/pretty.jpg').convert(), 
+                (840,840)
+            ),
+            'death_1':pygame.transform.scale(pygame.image.load(
+                './src/images/backgrounds/death.jpg').convert(), 
+                SCREEN_SIZE
+            ),
+            'squared_1':pygame.transform.scale(pygame.image.load(
+                './src/images/backgrounds/squared.jpg').convert(), 
+                SCREEN_SIZE
+            ),
+            'yellow_1':pygame.transform.scale(pygame.image.load(
+                './src/images/backgrounds/yellow.png').convert(), 
+                SCREEN_SIZE
+            )
+        }
+        # Load entities textures
+        self.png_paths = {
+            'will':'./src/images/player/will.png',
+            'firestar':'./src/images/player/proyectiles/firestar.png',
+            'bowling':'./src/images/enemies/bowling.png',
+            'invader01':'./src/images/enemies/space_invader01.png',
+            'invader02':'./src/images/enemies/space_invader02.png',
+            'redball':'./src/iamges/enemies/proyectiles/redball.png',
+            'fruit01':'./src/images/items/fruit_1.png'}
+        # Load fonts
+        self.fonts = {
+            'elegant_regular':Font('./src/fonts/Agdasima-Regular.ttf',12),
+            'elegant_bold':Font('./src/fonts/Agdasima-Bold.ttf',32),
+            'fancy_titles':Font('./src/fonts/Nabla-Regular.ttf',48),
+            'gothic_bold':Font('./src/fonts/CairoPlay-Bold.ttf',12),
+            'gothic_extralight':Font('./src/fonts/CairoPlay-ExtraLight.ttf',12),
+            'gothic_light':Font('./src/fonts/CairoPlay-Light.ttf',18),
+            'gothic_regular':Font('./src/fonts/CairoPlay-Regular.ttf',12),
+            'stdtxt_bold':Font('./src/fonts/RobotoMono-Bold.ttf',12),
+            'stdtxt_extralight':Font('./src/fonts/RobotoMono-ExtraLight.ttf',32),
+            'stdtxt_medium':Font('./src/fonts/RobotoMono-Medium.ttf',12),
+            'stdtxt_regular':Font('./src/fonts/RobotoMono-Regular.ttf',12),
+            'stdtxt_semibold':Font('./src/fonts/RobotoMono-SemiBold.ttf',12),
+            'stdtxt_thin':Font('./src/fonts/RobotoMono-Thin.ttf',12),
+            'grafitti_light':Font('./src/fonts/Tourney-Light.ttf',12),
+            'grafitti_regular':Font('./src/fonts/Tourney-Regular.ttf',12),
+            'grafitti_medium':Font('./src/fonts/Tourney-Medium.ttf',54),#title
+            'grafitti_bold':Font('./src/fonts/Tourney-Bold.ttf',12)
+        }
+        # Load efects textures
+        self.effect_pngs = {
+            'explosion_1':'./src/images/effects/explosion.png',
+            'mark_1':'./src/images/effects/mark_1.png'
+        }
+        # Load sound effects
+        self.sound_effects = {
+            'fire':pygame.mixer.Sound("./src/sounds/pap.mp3"),
+            'laser':pygame.mixer.Sound("./src/sounds/laser.wav"),
+            'redball':pygame.mixer.Sound("./src/sounds/blublu.wav"),
+            'triangle':pygame.mixer.Sound("./src/sounds/pipupi.wav"),
+            'fruit01':pygame.mixer.Sound("./src/sounds/titu.wav")
+        }
         #self.music
 
-        player_info = {'score':0, 'hits':0, 'kills':0, 'play_time':0, 'deaths':0}
-        self.player = Player(self.png_paths['will'],PLAYER_SIZE,PLAYER_ORIGIN,self.sound_effects['laser'], player_info)
-        self.file_paths = {'root':'./src/main_file.txt',
-                           'tmp1':'./src/tmp1_file.txt',
-                           'tmp2':'./src/tmp2_file.txt',
-                           'tmp3':'./src/tmp3_file.txt'}
+        # Player info table
+        player_info = {
+            'score':0, 
+            'hits':0, 
+            'kills':0, 
+            'play_time':0, 
+            'deaths':0
+            }
+        # Load Player
+        self.player = Player(
+            self.png_paths['will'],
+            PLAYER_SIZE,PLAYER_ORIGIN,
+            self.sound_effects['laser'], 
+            player_info)
+        # Load save files
+        self.file_paths = {
+            'root':'./files/main_file.txt',
+            'tmp1':'./files/tmp/tmp1_file.txt',
+            'tmp2':'./files/tmp/tmp2_file.txt',
+            'tmp3':'./files/tmp/tmp3_file.txt'
+        }
         self.file_id = 0
 
+        # Load Bowling
         self.bowlings = pygame.sprite.Group()
 
-        #SPACE INVADER
+        # Load entities
         self.firestars = pygame.sprite.Group()
         self.invaders = pygame.sprite.Group()
         self.redballs = pygame.sprite.Group()
         self.triangles = pygame.sprite.Group()
         self.fruits = pygame.sprite.Group()
 
-        #otro
+        # Load score limit
         self.score_roof = SCORE_ROOF
 
-        #general
+        # Load general stuff
         self.sprites = pygame.sprite.Group()
         self.hero = pygame.sprite.Group()
         self.enemies = pygame.sprite.Group()
         self.proyectiles = pygame.sprite.Group()
         self.items = pygame.sprite.Group()
         
-        #assign
+        # assign to entities
         self.sprites.add(self.player)
         self.hero.add(self.player)
         self.enemies.add(self.bowlings)
@@ -95,64 +138,64 @@ class Game:
         self.all_invaders = list()
         self.all_bowlings = list()
 
-        #game states
+        # game states
         self.running = True
         self.playing = False
         self.pause = False
         self.over = False
         self.menu = True
         self.score = False
+
         #game selector
         self.space_invaders = True
         self.level = 0
 
     def play(self):
-
         while self.running:
+            # clock -> event manager -> 
+            # -> update -> render game
             self.clock.tick(FPS)
             self.event_manage()
             self.update()
             self.render()
 
     def event_manage(self):
-        
+        # iterate & execution events
         for event in pygame.event.get():
+            # exit game
             if event.type == pygame.QUIT:
                 pygame.quit
                 sys.exit()
+            # main menu
             elif self.menu:
-                
-                    if event.type == pygame.KEYDOWN:
-                        if event.key == pygame.K_SPACE:
-                            
-                            self.playing = True
-                            self.menu = False
-                        if event.key == pygame.K_q:
-                            self.running = False
-                        if event.key == pygame.K_s:
-                            self.menu = False
-                            self.score = True
-
-                        if event.key == pygame.K_3:
-                            pass
-                    
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_SPACE:
+                        self.playing = True
+                        self.menu = False
+                    if event.key == pygame.K_q:
+                        self.running = False
+                    if event.key == pygame.K_s:
+                        self.menu = False
+                        self.score = True
+                    if event.key == pygame.K_3:
+                        pass
+            # 
             elif self.score:
-                
                     if event.type == pygame.K_q:
                         self.menu = True
                         self.score = False
 
-
             elif self.playing:
-                 
-                    prob = random.randint(0,200)
-                    if prob >= 185:
-                        for fruit in range(1):
-                            fruit = Fruit(self.png_paths['fruit01'],self.sound_effects['fruit01'],FRUIT_SIZE,(random.randrange(100,900), 0))
-                            fruit.sound.play()
-                            self.sprites.add(fruit)
-                            self.fruits.add(fruit)
-
+                prob = random.randint(0,200)
+                if prob >= 185:
+                    for fruit in range(1):
+                        fruit = Fruit(
+                            self.png_paths['fruit01'],
+                            self.sound_effects['fruit01'],
+                            FRUIT_SIZE,(random.randrange(100,900), 0))
+                        fruit.sound.play()
+                        self.sprites.add(fruit)
+                        self.fruits.add(fruit)
 
                     if event.type == pygame.KEYDOWN:
                         if event.key == pygame.K_LEFT:
